@@ -1,0 +1,15 @@
+.venv/
+venv/
+simplecsvcli.egg-info/
+dist/
+build/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.vscode/
+.idea/
+.env
+*.txt
+*.csv
+*.md

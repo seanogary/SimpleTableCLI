@@ -1,0 +1,53 @@
+from argparse import ArgumentParser, FileType
+
+
+def build_parser():
+	parser = ArgumentParser(
+		prog="simple-cli",
+		description="This is a simple CLI tool that supports basic CSV reading and transformation.",
+		epilog="Godspeed."
+	)
+
+	parser.add_argument("-nh", "--no-header", action="store_true", help="specifies presence of header")
+	parser.add_argument("-d", "--delimiter", type=str, help="delimit")
+
+	subparsers = parser.add_subparsers(dest="command", required=True)
+
+	# columns command
+	columns_parser = subparsers.add_parser("columns", help="columns")
+	columns_parser.add_argument("-m", "--match", type=str, help="regex", required=True)
+
+	# select command
+	select_parser = subparsers.add_parser("select", help="select")
+	select_parser.add_argument("value", help="cols")
+	select_parser.add_argument("-im", "--ignore-missing", action="store_true")
+
+	# filter command
+	filter_parser = subparsers.add_parser("filter", help="filter")
+	filter_parser.add_argument("--column", help="cols")
+	filter_parser.add_argument("--regex", help="regex")
+	filter_parser.add_argument("--ignore-case", action="store_true")
+	filter_parser.add_argument("--first", help="specify number of cols to match")
+
+	def add_input_file_argument(command_parser):
+		command_parser.add_argument("value", type=str, help="file")
+
+	add_input_file_argument(columns_parser)
+	add_input_file_argument(select_parser)
+	add_input_file_argument(filter_parser)
+
+	def columns_handler(args):
+		print(args)
+
+	def select_handler(args):
+		print(args)
+
+	def filter_handler(args):
+		print(args)
+
+	# command handlder dispatch
+	columns_parser.set_defaults(func=columns_handler)
+	select_parser.set_defaults(func=select_handler)
+	filter_parser.set_defaults(func=filter_handler)
+
+	return parser
