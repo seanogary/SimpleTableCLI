@@ -19,18 +19,18 @@ def build_parser():
 
 	# select command
 	select_parser = subparsers.add_parser("select", help="select")
-	select_parser.add_argument("value", help="cols")
+	select_parser.add_argument("match_value", type=str, help="cols")
 	select_parser.add_argument("-im", "--ignore-missing", action="store_true")
 
 	# filter command
 	filter_parser = subparsers.add_parser("filter", help="filter")
 	filter_parser.add_argument("--column", help="cols")
-	filter_parser.add_argument("--regex", help="regex")
+	filter_parser.add_argument("--regex",  action="store_true", help="regex")
 	filter_parser.add_argument("--ignore-case", action="store_true")
 	filter_parser.add_argument("--first", help="specify number of cols to match")
 
 	def add_input_file_argument(command_parser):
-		command_parser.add_argument("value", type=str, help="file")
+		command_parser.add_argument("table", type=str, help="file")
 
 	add_input_file_argument(columns_parser)
 	add_input_file_argument(select_parser)
