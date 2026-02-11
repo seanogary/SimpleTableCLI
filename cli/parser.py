@@ -1,5 +1,5 @@
 from argparse import ArgumentParser, FileType
-
+from columns import columns_command
 
 def build_parser():
 	parser = ArgumentParser(
@@ -9,13 +9,14 @@ def build_parser():
 	)
 
 	parser.add_argument("-nh", "--no-header", action="store_true", help="specifies presence of header")
-	parser.add_argument("-d", "--delimiter", type=str, help="delimit")
+	parser.add_argument("-d", "--delimiter", type=str, help="delimit", default=",")
 
 	subparsers = parser.add_subparsers(dest="command", required=True)
 
 	# columns command
 	columns_parser = subparsers.add_parser("columns", help="columns")
-	columns_parser.add_argument("-m", "--match", type=str, help="regex", required=True)
+	columns_parser.add_argument("-m", "--match", type=str, help="match_value", required=True)
+	columns_parser.add_argument("--regex", action="store_true")
 
 	# select command
 	select_parser = subparsers.add_parser("select", help="select")
@@ -30,14 +31,12 @@ def build_parser():
 	filter_parser.add_argument("--first", help="specify number of cols to match")
 
 	def add_input_file_argument(command_parser):
-		command_parser.add_argument("table", type=str, help="file")
+		command_parser.add_argument("file", type=str, help="file")
 
 	add_input_file_argument(columns_parser)
 	add_input_file_argument(select_parser)
 	add_input_file_argument(filter_parser)
 
-	def columns_handler(args):
-		print(args)
 
 	def select_handler(args):
 		print(args)
@@ -46,8 +45,13 @@ def build_parser():
 		print(args)
 
 	# command handlder dispatch
-	columns_parser.set_defaults(func=columns_handler)
+	columns_parser.set_defaults(func=columns_command)
 	select_parser.set_defaults(func=select_handler)
 	filter_parser.set_defaults(func=filter_handler)
 
 	return parser
+
+if __name__ == "__main__":
+	parser = build_parser()
+	args = parser.parse_args(['columns', '--match', '', '--regex', 'famous.csv'])
+	args.func(args)
