@@ -6,6 +6,7 @@ import pytest
 import os
 import csv
 import collections.abc 
+
 test_dir = os.path.dirname(__file__)
 
 def right_path(file):
@@ -33,3 +34,4 @@ def test_handle_malformed_file(capfd):
 	with pytest.raises(ValueError):
 		with data_loader.load_data(malformedFile, ",") as reader:
 			pass
+

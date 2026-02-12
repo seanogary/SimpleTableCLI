@@ -2,7 +2,7 @@ from data_loader import load_data
 import re
 from shutil import get_terminal_size
 
-def print_row(row_data, max_width, columns = None, header = False):	
+def format_row(row_data, max_width, columns = None, header = False):	
 	row = ""
 	if columns is not None:
 		tmp_row_data = []
@@ -20,11 +20,15 @@ def print_row(row_data, max_width, columns = None, header = False):
 			padding_right = padding[split_index:]
 			row += "|" + padding_left + f"{entry}" + padding_right
 	row += "|"
+
 	terminal_width = get_terminal_size().columns
-	print(row[:(terminal_width - max_width)])
-	if (header):
-		divider = ("-" * len(row))[:(terminal_width - max_width)]
-		print(divider)
+
+	row = row[:(terminal_width - max_width)]
+
+	if (header): 
+		row += "\n"  + ("-" * len(row))[:(terminal_width - max_width)]
+	
+	return row
 
 def match(value, matchValue, isRegex):
 	if (isRegex):
@@ -39,6 +43,6 @@ def columns_command(args):
 		columns = [
 			i for i, col in enumerate(first_row) if match(col, args.match, args.regex)
 		]
-		print_row(first_row, max_width, columns, header = True)
+		print(format_row(first_row, max_width, columns, header = True))
 		for row in reader:
-			print_row(row, max_width, columns)
+			print(format_row(row, max_width, columns))
