@@ -53,5 +53,5 @@ def build_parser():
 
 if __name__ == "__main__":
 	parser = build_parser()
-	args = parser.parse_args(['columns', '--match', '', '--regex', 'famous.csv'])
+	args = parser.parse_args(['columns', '--match', '', '--regex', 'test_regex.csv'])
 	args.func(args)

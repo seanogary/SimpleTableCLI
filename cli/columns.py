@@ -1,8 +1,14 @@
 from data_loader import load_data
 import re
+from shutil import get_terminal_size
 
-def print_row(row_data, max_width, header = False):	
+def print_row(row_data, max_width, columns = None, header = False):	
 	row = ""
+	if columns is not None:
+		tmp_row_data = []
+		for col_index in columns:
+			tmp_row_data.append(row_data[col_index])
+	row_data = tmp_row_data
 	for entry in row_data:
 		entry_length = len(entry)
 		if (max_width - entry_length < 0):
@@ -14,11 +20,11 @@ def print_row(row_data, max_width, header = False):
 			padding_right = padding[split_index:]
 			row += "|" + padding_left + f"{entry}" + padding_right
 	row += "|"
-	print("\x1b[?7l", end="")  # Disable line wrap, temporary hack, implement term width calc later
-	print(row)
-	print("\x1b[?7h", end="")  # enable line wrap, temporary hack, implement term width calc later
+	terminal_width = get_terminal_size().columns
+	print(row[:(terminal_width - max_width)])
 	if (header):
-		print("-" * len(row))
+		divider = ("-" * len(row))[:(terminal_width - max_width)]
+		print(divider)
 
 def match(value, matchValue, isRegex):
 	if (isRegex):
@@ -27,12 +33,12 @@ def match(value, matchValue, isRegex):
 		return value == matchValue
 
 def columns_command(args):
-	max_width = 30
+	max_width = 15
 	with load_data(args.file, args.delimiter) as reader:
 		first_row = next(reader)
 		columns = [
 			i for i, col in enumerate(first_row) if match(col, args.match, args.regex)
 		]
-		print_row(first_row, max_width, header = True)
+		print_row(first_row, max_width, columns, header = True)
 		for row in reader:
-			print_row(row, max_width)
+			print_row(row, max_width, columns)
