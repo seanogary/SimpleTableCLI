@@ -33,7 +33,7 @@ def test_columns_requires_match_value(capfd):
     assert_parse_error(['columns', '--match'], "-m/--match: expected one argument", capfd)
 
 def test_columns_requires_file_value(capfd):
-    assert_parse_error(['columns', '--match', 'regex'], "the following arguments are required: table", capfd)
+    assert_parse_error(['columns', '--match', 'regex'], "the following arguments are required: file", capfd)
 
 # columns - flags / options
 def test_columns_match_option():
@@ -58,7 +58,7 @@ def test_select_columns_arg():
 
 # filter - parse errors
 def test_filter_requires_value(capfd):
-    assert_parse_error(['filter'], "the following arguments are required: table", capfd)
+    assert_parse_error(['filter'], "the following arguments are required: file", capfd)
 
 def test_filter_requires_column_option(capfd):
     assert_parse_error(['filter', '--column'], "--column: expected one argument", capfd)

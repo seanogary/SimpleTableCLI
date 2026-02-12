@@ -1,5 +1,5 @@
 from argparse import ArgumentParser, FileType
-from columns import columns_command
+from .columns import columns_command
 
 def build_parser():
 	parser = ArgumentParser(
@@ -44,8 +44,7 @@ def build_parser():
 	def filter_handler(args):
 		print(args)
 
-	# command handlder dispatch
-	columns_parser.set_defaults(func=columns_command)
+	# command handlder dispatcher
 	select_parser.set_defaults(func=select_handler)
 	filter_parser.set_defaults(func=filter_handler)
 
@@ -55,3 +54,11 @@ if __name__ == "__main__":
 	parser = build_parser()
 	args = parser.parse_args(['columns', '--match', '', '--regex', 'test_regex.csv'])
 	args.func(args)
+
+def dispatch(args):
+	if (args.command == 'columns'):
+		try:
+			columns_command(args)
+		except Exception as e:
+			print(f"Error: {e}")
+
