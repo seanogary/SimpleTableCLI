@@ -4,17 +4,16 @@ SimpleTableCLI is a lightweight command-line tool for exploring and manipulating
 
 ## Table of contents
 
-- Project overview
-- Screen recordings
-- Features
-- Installation
-- Quick start
-- Tests
-- Project layout
-- Roadmap
-- Design notes
-- Contributing
-- License
+- [Project overview](#project-overview)
+- [Screen recordings](#screen-recordings)
+- [Features](#features)
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Tests](#tests)
+- [Project layout](#project-layout)
+- [Roadmap](#roadmap)
+- [Notes](#notes)
+- [License](#license)
 
 ## Project overview
 
