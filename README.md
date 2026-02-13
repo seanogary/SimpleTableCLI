@@ -11,8 +11,7 @@ SimpleTableCLI is a lightweight command-line tool for exploring and manipulating
 - [Quick start](#quick-start)
 - [Tests](#tests)
 - [Project layout](#project-layout)
-- [Roadmap](#roadmap)
-- [Notes](#notes)
+- [Notes and Takeaways](#notes-and-Takeaways)
 - [License](#license)
 
 ## Project overview
@@ -31,7 +30,7 @@ Screen recordings of use will go here.
 - Filter rows
 - Basic regex search utilities across fields
 - Unit tests covering core functionality
-- Pipe-friendly output (raw CSV when piped, formatted tables in terminal)- Terminal-friendly formatting of tabular output
+- Pipe-friendly output (raw CSV when piped, formatted tables in terminal)
 
 
 ## Installation
@@ -59,15 +58,6 @@ Display CLI help and available subcommands:
 python main.py --help
 ```
 
-Example invocation (replace with actual subcommand names and flags present in the CLI):
-
-```bash
-# Generic example — substitute the real subcommand and options
-python main.py <subcommand> <file> [options]
-```
-
-Keep examples concise and copyable to help reproduce common tasks.
-
 ## Tests
 
 Run the test suite with pytest:
@@ -75,8 +65,6 @@ Run the test suite with pytest:
 ```bash
 pytest -q
 ```
-
-Tests are located under the `tests/` directory and include fixtures for common CSV scenarios.
 
 ## Project layout
 
@@ -92,14 +80,7 @@ Tests are located under the `tests/` directory and include fixtures for common C
 - `tests/` — unit tests and testdata
 - `requirements.txt`, `pyproject.toml` — dependency and packaging metadata
 
-## Roadmap
-
-Planned improvements and potential directions:
-
-- A more expressive filtering/query language (logical operators, grouping)
-- Support for additional output formats (JSON, Parquet)
-
-## Notes
+## Notes and Takeaways
 
 TO-DO
 
@@ -108,5 +89,3 @@ TO-DO
 TO-DO
 
 ---
-
-This README functions as a draft and is suitable for publishing as a baseline project description. Exact CLI examples should be populated with concrete command lines that match the current implementation.
