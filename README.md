@@ -21,32 +21,18 @@ I built this project to learn the skill of building simple CLI tools according t
 
 ## Screen recordings
 
-This section is reserved for demo recordings and short descriptions. For each recording include a brief summary and the exact commands executed. Example structure:
-
-- Title: Loading & previewing a CSV
-  - Link: (link or local path)
-  - Summary: Short description of what is demonstrated
-  - Commands: Exact command lines used in the recording
-
-- Title: Selecting and formatting columns
-  - Link: (link or local path)
-  - Summary: Short description
-  - Commands: Exact command lines used in the recording
-
-- Title: Filtering and searching
-  - Link: (link or local path)
-  - Summary: Short description
-  - Commands: Exact command lines used in the recording
+Screen recordings of use will go here.
 
 ## Features
 
 - Load local CSV files
-- Inspect columns and basic metadata
+- Inspect columns
 - Select columns and project subsets of data
-- Filter rows using simple expressions and pattern matching
+- Filter rows
 - Basic regex search utilities across fields
-- Terminal-friendly formatting of tabular output
 - Unit tests covering core functionality
+- Pipe-friendly output (raw CSV when piped, formatted tables in terminal)- Terminal-friendly formatting of tabular output
+
 
 ## Installation
 
