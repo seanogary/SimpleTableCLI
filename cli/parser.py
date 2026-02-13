@@ -16,12 +16,10 @@ def build_parser():
 
 	# columns command
 	columns_parser = subparsers.add_parser("columns", help="columns")
-	# columns_parser.add_argument("-m", "--match", type=str, help="match_value", required=True)
-	# columns_parser.add_argument("--regex", action="store_true")
 
 	# select command
 	select_parser = subparsers.add_parser("select", help="select")
-	select_parser.add_argument("match_value", type=str, help="cols")
+	select_parser.add_argument("column_list", type=str, help="cols")
 	select_parser.add_argument("-im", "--ignore-missing", action="store_true")
 
 	# filter command

@@ -30,7 +30,7 @@ def test_columns_requires_file_value(capfd):
 
 # select - parse errors
 def test_select_requires_match_value(capfd):
-    assert_parse_error(['select'], "the following arguments are required: match_value", capfd)
+    assert_parse_error(['select'], "the following arguments are required: column_list", capfd)
 
 # select - flags / options
 def test_select_ignore_missing_flag():
@@ -41,7 +41,7 @@ def test_select_ignore_missing_flag():
 def test_select_columns_arg():
     parser = parser_builder.build_parser()
     args = parser.parse_args(['select', 'cols', 'table'])
-    assert args.match_value is 'cols'
+    assert args.column_list is 'cols'
 
 # filter - parse errors
 def test_filter_requires_value(capfd):
