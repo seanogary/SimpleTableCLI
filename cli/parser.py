@@ -1,7 +1,7 @@
 from argparse import ArgumentParser, FileType
 from .columns import columns_command
 from .select import select_command
-
+from .filter import filter_command
 def build_parser():
 	parser = ArgumentParser(
 		prog="simple-cli",
@@ -24,10 +24,12 @@ def build_parser():
 
 	# filter command
 	filter_parser = subparsers.add_parser("filter", help="filter")
-	filter_parser.add_argument("--column", help="cols")
+	filter_parser.add_argument("column_list", help="cols")
+	filter_parser.add_argument("--match", type=str, help="value to match", required=True)
 	filter_parser.add_argument("--regex",  action="store_true", help="regex")
+	filter_parser.add_argument("-im", "--ignore-missing", action="store_true")
 	filter_parser.add_argument("--ignore-case", action="store_true")
-	filter_parser.add_argument("--first", help="specify number of cols to match")
+	filter_parser.add_argument("--first", type=int, help="specify number of cols to match", default=1)
 
 	def add_input_file_argument(command_parser):
 		command_parser.add_argument("file", type=str, help="file")
@@ -56,10 +58,9 @@ if __name__ == "__main__":
 
 def dispatch(args):
 	if (args.command == 'columns'):
-		try:
-			columns_command(args)
-		except Exception as e:
-			print(f"Error: {e}")
+		columns_command(args)
 	if (args.command == 'select'):
-			select_command(args)
+		select_command(args)
+	if (args.command == 'filter'):
+		filter_command(args)
 
