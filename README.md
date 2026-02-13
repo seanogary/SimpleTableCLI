@@ -17,7 +17,7 @@ SimpleTableCLI is a lightweight command-line tool for exploring and manipulating
 
 ## Project overview
 
-SimpleCSVCLI is intended as a compact, readable codebase demonstrating practical CLI tooling for CSV workflows. The implementation emphasizes small, testable modules and clear behavior. The project is suitable for incremental improvements such as streaming large files, richer filtering expressions, and additional output formats.
+I built this project to learn the skill of building simple CLI tools according to a clearly scoped specification. And, for that matter, the general skill of completing a project with a clear finishing condition. I also used it as an opportunity to strengthen my ability to think through writing good tests and, critically, writing testable modules. 
 
 ## Screen recordings
 
