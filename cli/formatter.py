@@ -20,8 +20,9 @@ def format_row(row_data, max_width, header = False):
 
 	row = row[:(terminal_width - max_width)]
 
-	if (header): 
-		row += "\n"  + ("-" * len(row))[:(terminal_width - max_width)]
+	if (header):
+		separator = "-" * len(row)
+		row = separator + "\n" + row +  "\n"  + separator
 	
 	return row
 

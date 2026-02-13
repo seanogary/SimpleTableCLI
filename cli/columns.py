@@ -8,13 +8,18 @@ def columns_command(args):
 	try:
 		with load_data(args.file, args.delimiter) as reader:
 			first_row = next(reader)
-			columns = [
-				i for i, col in enumerate(first_row) if match(col, args.match, args.regex)
-			]	
-			print(format_row(first_row, max_width, header = True))	
+			col_counts = [0] * len(first_row)
 			for row in reader:
-				filtered_row = [row[i] for i in columns]
-				print(format_row(filtered_row, max_width))
+				for index, entry in enumerate(row):
+					if entry:
+						col_counts[index]+=1
+			col_summary = [""] * len(col_counts)
+			for index, entry in enumerate(first_row):
+				entry += f" ({col_counts[index]})"
+				col_summary[index] = entry
+
+			print(format_row(col_summary, max_width, header=True))
+
 
 	except Exception:
 		raise

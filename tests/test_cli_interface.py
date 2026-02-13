@@ -17,29 +17,16 @@ def test_cli_requires_command(capfd):
 
 def test_global_no_header_flag():
     parser = parser_builder.build_parser()
-    args = parser.parse_args(['--no-header', 'columns' ,'--match', 'regex' ,'file'])
+    args = parser.parse_args(['--no-header', 'columns' ,'file'])
     assert args.no_header is True
 
 def test_global_delimiter_option():
     parser = parser_builder.build_parser()
-    args = parser.parse_args(['--delimiter', ',' , 'columns' ,'--match', 'regex' ,'file'])
+    args = parser.parse_args(['--delimiter', ',' , 'columns', 'file'])
     assert args.delimiter is ','
 
-# columns - parse errors
-def test_columns_requires_match(capfd):
-    assert_parse_error(['columns', 'v'], "required: -m/--match", capfd)
-
-def test_columns_requires_match_value(capfd):
-    assert_parse_error(['columns', '--match'], "-m/--match: expected one argument", capfd)
-
 def test_columns_requires_file_value(capfd):
-    assert_parse_error(['columns', '--match', 'regex'], "the following arguments are required: file", capfd)
-
-# columns - flags / options
-def test_columns_match_option():
-    parser = parser_builder.build_parser()
-    args = parser.parse_args(['columns' ,'--match', 'regex' ,'file'])
-    assert args.match is 'regex'
+    assert_parse_error(['columns'], "the following arguments are required: file", capfd)
 
 # select - parse errors
 def test_select_requires_match_value(capfd):

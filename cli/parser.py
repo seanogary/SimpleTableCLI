@@ -1,5 +1,6 @@
 from argparse import ArgumentParser, FileType
 from .columns import columns_command
+from .select import select_command
 
 def build_parser():
 	parser = ArgumentParser(
@@ -15,8 +16,8 @@ def build_parser():
 
 	# columns command
 	columns_parser = subparsers.add_parser("columns", help="columns")
-	columns_parser.add_argument("-m", "--match", type=str, help="match_value", required=True)
-	columns_parser.add_argument("--regex", action="store_true")
+	# columns_parser.add_argument("-m", "--match", type=str, help="match_value", required=True)
+	# columns_parser.add_argument("--regex", action="store_true")
 
 	# select command
 	select_parser = subparsers.add_parser("select", help="select")
@@ -61,4 +62,6 @@ def dispatch(args):
 			columns_command(args)
 		except Exception as e:
 			print(f"Error: {e}")
+	if (args.command == 'select'):
+			select_command(args)
 
